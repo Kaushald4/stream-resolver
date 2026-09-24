@@ -1,0 +1,64 @@
+name: Release Adapters
+
+# Packs the adapters into the zips the companion installs (manifest.json +
+# obfuscated index.js), and publishes them as release assets.
+#
+# Every push to main packs them as a check. Pushing a tag like `adapters-v0.1.0`
+# publishes them, which is what the companion installs from.
+on:
+  push:
+    branches: [main]
+    tags:
+      - "adapters-v*"
+  workflow_dispatch: {}
+
+# Read-only by default. Only the release job elevates, so a routine push to
+# main can never write to the repository.
+permissions:
+  contents: read
+
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Pack adapters
+        run: pnpm pack-adapters
+
+      - name: Show packs
+        run: ls -la dist/packages
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: adapter-packages
+          path: dist/packages/*.zip
+
+  release:
+    needs: pack
+    if: startsWith(github.ref, 'refs/tags/adapters-v')
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: adapter-packages
+          path: dist/packages
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: dist/packages/*.zip
+          generate_release_notes: true

@@ -1,0 +1,43 @@
+{
+  "name": "stream-resolver",
+  "version": "0.1.0",
+  "description": "Plugin-based media stream extraction engine",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "stream-resolver": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "tsc",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit",
+    "health": "node --import tsx src/health/cli.ts",
+    "extract": "node --import tsx src/cli.ts",
+    "test": "node --import tsx tests/vidsrc2-parser.test.ts && node --import tsx tests/cineby-parser.test.ts && node --import tsx tests/cineby-decrypt.test.ts && node --import tsx tests/playback-url.test.ts && node --import tsx tests/nxsha-parser.test.ts && node --import tsx tests/viduki-parser.test.ts",
+    "pack-adapter": "node scripts/pack-adapter.mjs",
+    "pack-adapters": "node scripts/pack-adapter.mjs cineby vidsrc2 nxsha viduki primeflix"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "crypto-js": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
+    "@types/node": "^22.13.10",
+    "adm-zip": "^0.5.16",
+    "esbuild": "^0.25.0",
+    "javascript-obfuscator": "^4.1.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}

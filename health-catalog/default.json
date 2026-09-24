@@ -1,0 +1,20 @@
+[
+  {
+    "extractor": "vidsrc2",
+    "label": "Iron Man 3 (movie)",
+    "input": {
+      "kind": "movie",
+      "imdbId": "tt1300854"
+    }
+  },
+  {
+    "extractor": "vidsrc2",
+    "label": "Game of Thrones S1E1",
+    "input": {
+      "kind": "episode",
+      "tmdbId": 1399,
+      "season": 1,
+      "episode": 1
+    }
+  }
+]

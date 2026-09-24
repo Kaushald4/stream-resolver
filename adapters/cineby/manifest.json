@@ -1,0 +1,24 @@
+{
+  "id": "multi-cdn-hls",
+  "name": "Multi-CDN HLS Resolver",
+  "version": "1.0.0",
+  "summary": "Adaptive bitrate HLS with federated CDN failover and subtitle muxing.",
+  "description": "Resolves encrypted catalog seeds into normalized HLS manifests. Handles multi-host segment delivery, referer-aware proxying, and WebVTT sidecar injection.",
+  "author": "Streamflow Engine",
+  "entry": "index.js",
+  "status": "stable",
+  "adapterClass": "site-adapter",
+  "transport": "HLS · fMP4",
+  "decryption": "AES payload unpack",
+  "metadataBinding": "TMDB ID (primary)",
+  "idHint": "tmdb",
+  "capabilities": {
+    "movie": true,
+    "series": true,
+    "episodes": true,
+    "shortDrama": false,
+    "subtitles": true,
+    "multipleQualities": true,
+    "directStreams": true
+  }
+}

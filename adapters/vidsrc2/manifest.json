@@ -1,0 +1,24 @@
+{
+  "id": "wasm-catalog-decrypt",
+  "name": "WASM Catalog Decryptor",
+  "version": "1.0.0",
+  "summary": "WebAssembly-backed stream discovery with JWT-tokenized playback URLs.",
+  "description": "Fetches encrypted stream catalogs, instantiates a WASM decryptor module, and emits token-stamped HLS endpoints suitable for same-origin relay playback.",
+  "author": "Streamflow Engine",
+  "entry": "index.js",
+  "status": "stable",
+  "adapterClass": "site-adapter",
+  "transport": "HLS · fMP4",
+  "decryption": "WASM AES-GCM",
+  "metadataBinding": "IMDb (film) · TMDB (serialized)",
+  "idHint": "either",
+  "capabilities": {
+    "movie": true,
+    "series": true,
+    "episodes": true,
+    "shortDrama": false,
+    "subtitles": false,
+    "multipleQualities": true,
+    "directStreams": true
+  }
+}

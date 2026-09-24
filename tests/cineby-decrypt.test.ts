@@ -1,0 +1,15 @@
+import assert from "node:assert/strict";
+import { decryptCinebyPayload } from "../src/extractors/cineby/decrypt.ts";
+import { parseCinebySourcesJson } from "../src/extractors/cineby/parser.ts";
+
+// Fixture from cineby/index.js (Arrow tmdb 1412)
+const seed = "59599373.5xAE37uqSNnYp8ykKCGNDO";
+const ciphertext = `6TPZgb507mRoUb6wHXr0PVBeCMrn_hUi_JiF5mrfqhK-YRe3lG4Iif8V66xM3x3X6JMG60ilsCANAh0VsqtjmTNkc_ZN6D6mbXcPYTnMrpdQI9ILh7qQB2DDq5_NOYejijZiDSRMvQxgrIUdeoWayztqIIBisEw372__78OG4_5qX_yFLoy5CDz7ytFekeSdAFz6zwX9H3D8bAcn2a3TJYcG3G-IV_Z0zSXuhxHHMxTWhZKfNRw5TsXxEsfknRhjLGTl4qEg6uPCTm6lvaluP8E6QANkC65_YPLIGBEdFlP9aXjIXbWMA1gU-o4TNrtKSq8V_rM0isQUy8ejt9Zh7ERkcV6wkMhZQSFSFs3hz-iNDD52-IWMZFNkOnItVkv_GZgNF63dfhFyyPEc9JmC9N8tC_JNJvYCdssGZEtUsVolm_IBpYynglkiP5GQdh17xFTtpwZXef2J8Q4wQimxsDW6m4EL1CK9syYjSJw3rzNf4a_SWM1aWBAygK62DK-TsVmu5v4ttwG_To4xkdU_RuAB-Ss4xJiT1CfCGNVjmZMPmfLfkIp7FE4NTl1tjSO44S0dxjDK3rfrHHEaEb2-tsjn0rU1BNf1RCmY0RWd-b07pBvJipcbpS_ifyXJDddHPSMS3_IngKYsOS-G5xh20XVQANuhAXZhvpebRkcHD8PYn2UMApvHodoBUG1asVMXd_LH-TRiusr_YKUKojorWa7AFujcVCWcJVmaK0siMhi51-hKYX-WN5SwG7nqF7LgX2ODh4ULPS-QBw5avQLKr4sjcG8UPhWJ6tlarGC-xllFuIeFztBrr1NlRshN7FYDXKdeiFfg3kO1Y7nDGCS8g6HrmfaGxl6rD3knNQx0vtrdITjek9139vIgB9IiqifllpKoEYHa7roY_Gimm1KpoqpXYqdJh5DE_UvTr9cnd2Z91kJ9ulmqxGuVJpExnk4k5zuifgeqFNf9mV4j8jz4g1tnOX0INbRm-0crme1O4v-q3CIBq3q_9oc9xHrlnn3URJTjz81rzVMxKfREtE03MDuCvsNWpE4nCwhEw79rH9an7m0K7gIPIOGF2aCUZuoN3FNikQ4xU-ynf5e8jkc2R1iJxMw`;
+
+const plaintext = decryptCinebyPayload(ciphertext, seed, 1412);
+const parsed = parseCinebySourcesJson(plaintext);
+assert.ok(Array.isArray(parsed.sources));
+assert.ok(parsed.sources!.length > 0);
+assert.ok(parsed.sources![0]!.url?.includes(".m3u8"));
+
+console.log("cineby decrypt tests ok");

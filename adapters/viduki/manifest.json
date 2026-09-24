@@ -1,0 +1,24 @@
+{
+  "id": "viduki-streams",
+  "name": "Viduki",
+  "version": "1.0.0",
+  "summary": "Viduki.net stream discovery via ALTCHA + WASM envelope decryption.",
+  "description": "Bootstraps a Viduki session, solves ALTCHA challenges, decrypts pepper-key and per-server envelopes with the site's WASM module, and returns HLS/MP4 streams.",
+  "author": "Streamflow Engine",
+  "entry": "index.js",
+  "status": "stable",
+  "adapterClass": "site-adapter",
+  "transport": "HLS · MP4 · MKV",
+  "decryption": "ALTCHA + WASM envelope",
+  "metadataBinding": "TMDB ID (primary)",
+  "idHint": "tmdb",
+  "capabilities": {
+    "movie": true,
+    "series": true,
+    "episodes": true,
+    "shortDrama": false,
+    "subtitles": false,
+    "multipleQualities": true,
+    "directStreams": true
+  }
+}

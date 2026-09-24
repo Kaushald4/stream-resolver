@@ -1,0 +1,24 @@
+{
+  "id": "primeflix-streams",
+  "name": "Primeflix",
+  "version": "1.0.0",
+  "summary": "Primeflix.ru stream discovery via encrypted API responses.",
+  "description": "Fetches movie and TV sources from primeflix.ru/api, decrypts AES-256-GCM URL payloads, and returns direct HLS/MP4 streams with Primeflix referer/origin for playback.",
+  "author": "Streamflow Engine",
+  "entry": "index.js",
+  "status": "stable",
+  "adapterClass": "site-adapter",
+  "transport": "HLS · MP4",
+  "decryption": "AES-256-GCM static key",
+  "metadataBinding": "TMDB ID (primary)",
+  "idHint": "tmdb",
+  "capabilities": {
+    "movie": true,
+    "series": true,
+    "episodes": true,
+    "shortDrama": false,
+    "subtitles": false,
+    "multipleQualities": true,
+    "directStreams": true
+  }
+}
