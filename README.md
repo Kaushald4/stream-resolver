@@ -17,7 +17,7 @@ This package is not published to npm. Use it from a checkout or as a git depende
 
 ```bash
 # as a git dependency
-pnpm add github:<owner>/stream-resolver#main
+pnpm add github:kaushald4/stream-resolver#main
 
 # or from a sibling checkout
 pnpm add file:../stream-resolver
